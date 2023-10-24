@@ -1,5 +1,16 @@
 # team02-f23-6pm-2
 
+```
+| Table                       | Team Member  | Github Id     |
+|-----------------------------|--------------|---------------|
+| `UCSBDiningCommonsMenuItem` | Zhenyu       | ZhenyuYu1     |
+| `UCSBOrganization`          | Chris        | cstraw2021    |
+| `RecommendationRequest`     | William      | whuang602     |
+| `MenuItemReview`            | Justin       | justinchung712|
+| `HelpRequest`               | Jeffrey      | SparklyJeff   |
+| `Articles`                  | Vedant       | vedantshah99  |
+```
+
 Instructions: <https://ucsb-cs156.github.io/f23/lab/team02.html>
 
 Deployments:
