@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
 
 import javax.validation.Valid;
 
@@ -52,10 +49,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
             @Parameter(name="name") @RequestParam String name,
             @Parameter(name="station") @RequestParam String station)
             throws JsonProcessingException {
-
-        // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-        // See: https://www.baeldung.com/spring-date-parameters
-
+        
         log.info("diningCommonsCode={}", diningCommonsCode);
         log.info("name={}", name);
         log.info("station={}", station);
