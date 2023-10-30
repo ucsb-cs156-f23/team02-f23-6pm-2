@@ -69,6 +69,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
 
         return savedUcsbDiningCommonsMenuItem;
     }
+}
 
 //     @Operation(summary= "Get a single menu item")
 //     @PreAuthorize("hasRole('ROLE_USER')")
