@@ -3,12 +3,9 @@ package edu.ucsb.cs156.example.controllers;
 import edu.ucsb.cs156.example.repositories.UserRepository;
 import edu.ucsb.cs156.example.testconfig.TestConfig;
 import edu.ucsb.cs156.example.ControllerTestCase;
-import edu.ucsb.cs156.example.entities.UCSBDate;
 import edu.ucsb.cs156.example.entities.UCSBDiningCommonsMenuItem;
-import edu.ucsb.cs156.example.repositories.UCSBDateRepository;
 import edu.ucsb.cs156.example.repositories.UCSBDiningCommonsMenuItemRepository;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -43,18 +40,18 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
         @MockBean
         UserRepository userRepository;
 
-        // Tests for GET /api/ucsbdiningcommonsmenuitem/all
+        // Tests for GET /api/UCSBDiningCommonsMenuItem/all
         
         @Test
         public void logged_out_users_cannot_get_all() throws Exception {
-                mockMvc.perform(get("/api/ucsbdiningcommonsmenuitem/all"))
+                mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem/all"))
                                 .andExpect(status().is(403)); // logged out users can't get all
         }
 
         @WithMockUser(roles = { "USER" })
         @Test
         public void logged_in_users_can_get_all() throws Exception {
-                mockMvc.perform(get("/api/ucsbdiningcommonsmenuitem/all"))
+                mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem/all"))
                                 .andExpect(status().is(200)); // logged
         }
 
@@ -82,7 +79,7 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
                 when(ucsbDiningCommonsMenuItemRepository.findAll()).thenReturn(expectedDiningCommonsMenuItems);
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/ucsbdiningcommonsmenuitem/all"))
+                MvcResult response = mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem/all"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
@@ -93,18 +90,18 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
                 assertEquals(expectedJson, responseString);
         }
 
-        // Tests for POST /api/ucsbdiningcommonsmenuitem/post...
+        // Tests for POST /api/UCSBDiningCommonsMenuItem/post...
 
         @Test
         public void logged_out_users_cannot_post() throws Exception {
-                mockMvc.perform(post("/api/ucsbdiningcommonsmenuitem/post"))
+                mockMvc.perform(post("/api/UCSBDiningCommonsMenuItem/post"))
                                 .andExpect(status().is(403));
         }
 
         @WithMockUser(roles = { "USER" })
         @Test
         public void logged_in_regular_users_cannot_post() throws Exception {
-                mockMvc.perform(post("/api/ucsbdiningcommonsmenuitem/post"))
+                mockMvc.perform(post("/api/UCSBDiningCommonsMenuItem/post"))
                                 .andExpect(status().is(403)); // only admins can post
         }
 
@@ -123,7 +120,7 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/ucsbdiningcommonsmenuitem/post?diningCommonsCode=ortega&name=Baked Pesto Pasta with Chicken&station=Entree Special")
+                                post("/api/UCSBDiningCommonsMenuItem/post?diningCommonsCode=ortega&name=Baked Pesto Pasta with Chicken&station=Entree Special")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -138,7 +135,7 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
 
         // @Test
         // public void logged_out_users_cannot_get_by_id() throws Exception {
-        //         mockMvc.perform(get("/api/ucsbdates?id=7"))
+        //         mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem?id=123"))
         //                         .andExpect(status().is(403)); // logged out users can't get by id
         // }
 
@@ -147,24 +144,23 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
         // public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
 
         //         // arrange
-        //         LocalDateTime ldt = LocalDateTime.parse("2022-01-03T00:00:00");
 
-        //         UCSBDate ucsbDate = UCSBDate.builder()
-        //                         .name("firstDayOfClasses")
-        //                         .quarterYYYYQ("20222")
-        //                         .localDateTime(ldt)
+        //         UCSBDiningCommonsMenuItem ucsbDiningCommonsMenuItem = UCSBDiningCommonsMenuItem.builder()
+        //                         .diningCommonsCode("ortega")
+        //                         .name("Tofu Banh Mi Sandwich (v)")
+        //                         .station("Entree Special")
         //                         .build();
 
-        //         when(ucsbDateRepository.findById(eq(7L))).thenReturn(Optional.of(ucsbDate));
+        //         when(ucsbDiningCommonsMenuItemRepository.findById(eq(7L))).thenReturn(Optional.of(ucsbDiningCommonsMenuItem));
 
         //         // act
-        //         MvcResult response = mockMvc.perform(get("/api/ucsbdates?id=7"))
+        //         MvcResult response = mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem?id=123"))
         //                         .andExpect(status().isOk()).andReturn();
 
         //         // assert
 
-        //         verify(ucsbDateRepository, times(1)).findById(eq(7L));
-        //         String expectedJson = mapper.writeValueAsString(ucsbDate);
+        //         verify(ucsbDiningCommonsMenuItemRepository, times(1)).findById(eq(123L));
+        //         String expectedJson = mapper.writeValueAsString(ucsbDiningCommonsMenuItem);
         //         String responseString = response.getResponse().getContentAsString();
         //         assertEquals(expectedJson, responseString);
         // }
