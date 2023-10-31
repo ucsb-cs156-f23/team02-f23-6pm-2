@@ -43,7 +43,7 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
         @MockBean
         UserRepository userRepository;
 
-        // Tests for GET /api/ucsbdates/all
+        // Tests for GET /api/ucsbdiningcommonsmenuitem/all
         
         @Test
         public void logged_out_users_cannot_get_all() throws Exception {
@@ -93,7 +93,7 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
                 assertEquals(expectedJson, responseString);
         }
 
-        // Tests for POST /api/ucsbdates/post...
+        // Tests for POST /api/ucsbdiningcommonsmenuitem/post...
 
         @Test
         public void logged_out_users_cannot_post() throws Exception {
