@@ -99,7 +99,7 @@ public class UCSBArticleController extends ApiController {
     @Operation(summary= "Update a single UCSB Articles")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
-    public UCSBArticles updateRecommendationRequest(
+    public UCSBArticles updateUcsbArticles(
             @Parameter(name="id") @RequestParam Long id,
             @RequestBody @Valid UCSBArticles incoming) {
 
