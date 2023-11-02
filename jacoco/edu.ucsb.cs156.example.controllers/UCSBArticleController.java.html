@@ -83,5 +83,19 @@ import java.time.LocalDateTime;
 
 <span class="fc" id="L84">        return RecRequest;</span>
     }
+
+    @Operation(summary= &quot;Delete an article&quot;)
+    @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
+    @DeleteMapping(&quot;&quot;)
+    public Object deleteRecommendationRequest(
+            @Parameter(name=&quot;id&quot;) @RequestParam Long id) {
+<span class="fc" id="L92">        UCSBArticles ucsbArticle = ucsbArticlesRepository.findById(id)</span>
+<span class="fc" id="L93">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBArticles.class, id));</span>
+
+<span class="fc" id="L95">        ucsbArticlesRepository.delete(ucsbArticle);</span>
+<span class="fc" id="L96">        return genericMessage(&quot;UCSBArticles with id %s deleted&quot;.formatted(id));</span>
+    }
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
