@@ -19,7 +19,7 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "ucsbdates")
+@Entity(name = "ucsbarticles")
 public class UCSBArticles {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +29,5 @@ public class UCSBArticles {
   private String url;  
   private String explanation;
   private String email;
-  private Local dateAdded;
+  private LocalDateTime dateAdded;
 }
