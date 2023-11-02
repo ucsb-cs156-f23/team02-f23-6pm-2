@@ -13,7 +13,7 @@
 
 Instructions: <https://ucsb-cs156.github.io/f23/lab/team02.html>
 
-Deployments:
+Deployments: 
 
 * Prod: <https://team02.dokku-06.cs.ucsb.edu>
 * QA: <https://team02-qa.dokku-06.cs.ucsb.edu>
