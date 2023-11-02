@@ -81,7 +81,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                                 .teamOrBreakoutRoom("table-2")
                                 .requestTime(ldt2)
                                 .explanation("I need help with team03")
-                                .solved(false)
+                                .solved(true)
                                 .build();
 
                 ArrayList<HelpRequest> expectedHelpRequests = new ArrayList<>();
@@ -129,14 +129,14 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                                 .teamOrBreakoutRoom("table-1")
                                 .requestTime(ldt1)
                                 .explanation("I need help with team02")
-                                .solved(false)
+                                .solved(true)
                                 .build();
 
                 when(helpRequestRepository.save(eq(helpRequest1))).thenReturn(helpRequest1);
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/helprequests/post?requesterEmail=jgaucho@ucsb.edu&teamId=team-1&tableOrBreakoutRoom=table-1&requestTime=2022-01-03T00:00:00&explanation=I need help with team02&solved=false")
+                                post("/api/helprequests/post?requesterEmail=jgaucho@ucsb.edu&teamId=team-1&tableOrBreakoutRoom=table-1&requestTime=2022-01-03T00:00:00&explanation=I need help with team02&solved=true")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -221,7 +221,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                                 .teamOrBreakoutRoom("table-1")
                                 .requestTime(ldt1)
                                 .explanation("I need help with team02")
-                                .solved(false)
+                                .solved(true)
                                 .build();
 
                 when(helpRequestRepository.findById(eq(15L))).thenReturn(Optional.of(helpRequest1));
@@ -268,7 +268,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                 // arrange
 
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
-                LocalDateTime ldt2 = LocalDateTime.parse("2023-01-03T00:00:00");
+                LocalDateTime ldt2 = LocalDateTime.parse("2023-02-03T00:00:00");
 
                 HelpRequest helpRequestOrig = HelpRequest.builder()
                                 .requesterEmail("jgaucho@ucsb.edu")
@@ -280,12 +280,12 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                                 .build();
 
                 HelpRequest helpRequestEdited = HelpRequest.builder()
-                                .requesterEmail("jgaucho@ucsb.edu")
-                                .teamId("team-1")
-                                .teamOrBreakoutRoom("table-1")
+                                .requesterEmail("jgaucho2@ucsb.edu")
+                                .teamId("team-2")
+                                .teamOrBreakoutRoom("table-2")
                                 .requestTime(ldt2)
-                                .explanation("I need help with team02")
-                                .solved(false)
+                                .explanation("I need help with team03")
+                                .solved(true)
                                 .build();
                 String requestBody = mapper.writeValueAsString(helpRequestEdited);
 
