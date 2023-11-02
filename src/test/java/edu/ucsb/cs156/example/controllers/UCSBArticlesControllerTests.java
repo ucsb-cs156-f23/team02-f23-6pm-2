@@ -198,7 +198,7 @@ public class UCSBArticlesControllerTests extends ControllerTestCase {
             verify(ucsbArticlesRepository, times(1)).findById(eq(7L));
             Map<String, Object> json = responseToJson(response);
             assertEquals("EntityNotFoundException", json.get("type"));
-            assertEquals("RecommendationRequest with id 7 not found", json.get("message"));
+            assertEquals("UCSBArticles with id 7 not found", json.get("message"));
     }
 
 }
