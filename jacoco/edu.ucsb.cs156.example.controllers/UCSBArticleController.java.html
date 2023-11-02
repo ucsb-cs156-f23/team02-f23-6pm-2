@@ -43,7 +43,7 @@ import java.time.LocalDateTime;
 <span class="fc" id="L43">        return requests;</span>
     }
 
-    @Operation(summary= &quot;Create a Recommendation Request&quot;)
+    @Operation(summary= &quot;Create an Article&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PostMapping(&quot;/post&quot;)
     public UCSBArticles postRecommendationRequest(
@@ -96,6 +96,26 @@ import java.time.LocalDateTime;
 <span class="fc" id="L96">        return genericMessage(&quot;UCSBArticles with id %s deleted&quot;.formatted(id));</span>
     }
 
+    @Operation(summary= &quot;Update a single UCSB Articles&quot;)
+    @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
+    @PutMapping(&quot;&quot;)
+    public UCSBArticles updateUcsbArticles(
+            @Parameter(name=&quot;id&quot;) @RequestParam Long id,
+            @RequestBody @Valid UCSBArticles incoming) {
+
+<span class="fc" id="L106">        UCSBArticles ucsbArticles = ucsbArticlesRepository.findById(id)</span>
+<span class="fc" id="L107">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBArticles.class, id));</span>
+
+<span class="fc" id="L109">        ucsbArticles.setTitle(incoming.getTitle());</span>
+<span class="fc" id="L110">        ucsbArticles.setUrl(incoming.getUrl());</span>
+<span class="fc" id="L111">        ucsbArticles.setExplanation(incoming.getExplanation());</span>
+<span class="fc" id="L112">        ucsbArticles.setEmail(incoming.getEmail());</span>
+<span class="fc" id="L113">        ucsbArticles.setDateAdded(incoming.getDateAdded());</span>
+
+<span class="fc" id="L115">        ucsbArticlesRepository.save(ucsbArticles);</span>
+
+<span class="fc" id="L117">        return ucsbArticles;</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
