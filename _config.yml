@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f23/team02-f23-6pm-2
 owner: ucsb-cs156-f23
 repo_name: team02-f23-6pm-2
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjU5Mzc5NDY0","is_bot":false,"login":"justinchung712","name":""},"headRefName":"Justin-ItemReviewTable","number":62,"title":"Create database table for MenuItemReview","url":"https://github.com/ucsb-cs156-f23/team02-f23-6pm-2/pull/62"}]
