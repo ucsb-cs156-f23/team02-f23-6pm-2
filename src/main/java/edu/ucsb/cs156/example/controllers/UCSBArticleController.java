@@ -106,11 +106,11 @@ public class UCSBArticleController extends ApiController {
         UCSBArticles ucsbArticles = ucsbArticlesRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(UCSBArticles.class, id));
 
-        ucsbArticles.setTitle(incoming.setTitle());
-        ucsbArticles.setUrl(incoming.setUrl());
-        ucsbArticles.setExplanation(incoming.setExplanation());
-        ucsbArticles.setEmail(incoming.setEmail());
-        ucsbArticles.setDateAdded(incoming.setDateAdded());
+        ucsbArticles.setTitle(incoming.getTitle());
+        ucsbArticles.setUrl(incoming.getUrl());
+        ucsbArticles.setExplanation(incoming.getExplanation());
+        ucsbArticles.setEmail(incoming.getEmail());
+        ucsbArticles.setDateAdded(incoming.getDateAdded());
 
         ucsbArticlesRepository.save(ucsbArticles);
 
