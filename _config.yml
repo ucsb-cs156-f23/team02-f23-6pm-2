@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f23/team02-f23-6pm-2
 owner: ucsb-cs156-f23
 repo_name: team02-f23-6pm-2
-pull_requests: [{"author":{"id":"U_kgDOBdHvcw","is_bot":false,"login":"vedantshah99","name":"Vedant Shah"},"headRefName":"vedant-articles-delete","number":59,"title":"Vedant articles delete","url":"https://github.com/ucsb-cs156-f23/team02-f23-6pm-2/pull/59"},{"author":{"id":"U_kgDOBdHvcw","is_bot":false,"login":"vedantshah99","name":"Vedant Shah"},"headRefName":"vedant-Article-GetPost","number":56,"title":"Vedant article get post","url":"https://github.com/ucsb-cs156-f23/team02-f23-6pm-2/pull/56"}]
+pull_requests: [{"author":{"id":"U_kgDOBdHvcw","is_bot":false,"login":"vedantshah99","name":"Vedant Shah"},"headRefName":"vedant-articles-delete","number":59,"title":"Vedant articles delete","url":"https://github.com/ucsb-cs156-f23/team02-f23-6pm-2/pull/59"}]
