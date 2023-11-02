@@ -43,7 +43,7 @@ public class UCSBArticleController extends ApiController {
         return requests;
     }
 
-    @Operation(summary= "Create a Recommendation Request")
+    @Operation(summary= "Create an Article")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public UCSBArticles postRecommendationRequest(
@@ -96,5 +96,25 @@ public class UCSBArticleController extends ApiController {
         return genericMessage("UCSBArticles with id %s deleted".formatted(id));
     }
 
+    @Operation(summary= "Update a single UCSB Articles")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("")
+    public UCSBArticles updateUcsbArticles(
+            @Parameter(name="id") @RequestParam Long id,
+            @RequestBody @Valid UCSBArticles incoming) {
+
+        UCSBArticles ucsbArticles = ucsbArticlesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(UCSBArticles.class, id));
+
+        ucsbArticles.setTitle(incoming.getTitle());
+        ucsbArticles.setUrl(incoming.getUrl());
+        ucsbArticles.setExplanation(incoming.getExplanation());
+        ucsbArticles.setEmail(incoming.getEmail());
+        ucsbArticles.setDateAdded(incoming.getDateAdded());
+
+        ucsbArticlesRepository.save(ucsbArticles);
+
+        return ucsbArticles;
+    }
 
 }
