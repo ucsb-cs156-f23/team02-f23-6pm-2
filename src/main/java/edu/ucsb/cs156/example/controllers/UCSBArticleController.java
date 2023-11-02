@@ -83,4 +83,18 @@ public class UCSBArticleController extends ApiController {
 
         return RecRequest;
     }
+
+    @Operation(summary= "Delete an article")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("")
+    public Object deleteRecommendationRequest(
+            @Parameter(name="id") @RequestParam Long id) {
+        UCSBArticles ucsbArticle = ucsbArticlesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(UCSBArticles.class, id));
+
+        ucsbArticlesRepository.delete(ucsbArticle);
+        return genericMessage("UCSBArticles with id %s deleted".formatted(id));
+    }
+
+
 }
