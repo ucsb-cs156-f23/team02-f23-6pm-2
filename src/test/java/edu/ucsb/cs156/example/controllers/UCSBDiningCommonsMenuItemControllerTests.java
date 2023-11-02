@@ -235,79 +235,74 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
                 assertEquals("UCSBDiningCommonsMenuItem with id 123 not found", json.get("message"));
         }
 
-        // // Tests for PUT /api/ucsbdates?id=... 
+        // Tests for PUT /api/UCSBDiningCommonsMenuItem?id=... 
 
-        // @WithMockUser(roles = { "ADMIN", "USER" })
-        // @Test
-        // public void admin_can_edit_an_existing_ucsbdate() throws Exception {
-        //         // arrange
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_can_edit_an_existing_ucsbdate() throws Exception {
+                // arrange
 
-        //         LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
-        //         LocalDateTime ldt2 = LocalDateTime.parse("2023-01-03T00:00:00");
+                UCSBDiningCommonsMenuItem ucsbDiningCommonsMenuItemOrig = UCSBDiningCommonsMenuItem.builder()
+                                .diningCommonsCode("portola")
+                                .name("Cream of Broccoli Soup (v)")
+                                .station("Greens & Grains")
+                                .build();
 
-        //         UCSBDate ucsbDateOrig = UCSBDate.builder()
-        //                         .name("firstDayOfClasses")
-        //                         .quarterYYYYQ("20222")
-        //                         .localDateTime(ldt1)
-        //                         .build();
+                UCSBDiningCommonsMenuItem ucsbDiningCommonsMenuItemEdited = UCSBDiningCommonsMenuItem.builder()
+                                .diningCommonsCode("ortega")
+                                .name("Chicken Caesar Salad")
+                                .station("Entrees")
+                                .build();
 
-        //         UCSBDate ucsbDateEdited = UCSBDate.builder()
-        //                         .name("firstDayOfFestivus")
-        //                         .quarterYYYYQ("20232")
-        //                         .localDateTime(ldt2)
-        //                         .build();
+                String requestBody = mapper.writeValueAsString(ucsbDiningCommonsMenuItemEdited);
 
-        //         String requestBody = mapper.writeValueAsString(ucsbDateEdited);
+                when(ucsbDiningCommonsMenuItemRepository.findById(eq(123L))).thenReturn(Optional.of(ucsbDiningCommonsMenuItemOrig));
 
-        //         when(ucsbDateRepository.findById(eq(67L))).thenReturn(Optional.of(ucsbDateOrig));
+                // act
+                MvcResult response = mockMvc.perform(
+                                put("/api/UCSBDiningCommonsMenuItem?id=123")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .characterEncoding("utf-8")
+                                                .content(requestBody)
+                                                .with(csrf()))
+                                .andExpect(status().isOk()).andReturn();
 
-        //         // act
-        //         MvcResult response = mockMvc.perform(
-        //                         put("/api/ucsbdates?id=67")
-        //                                         .contentType(MediaType.APPLICATION_JSON)
-        //                                         .characterEncoding("utf-8")
-        //                                         .content(requestBody)
-        //                                         .with(csrf()))
-        //                         .andExpect(status().isOk()).andReturn();
-
-        //         // assert
-        //         verify(ucsbDateRepository, times(1)).findById(67L);
-        //         verify(ucsbDateRepository, times(1)).save(ucsbDateEdited); // should be saved with correct user
-        //         String responseString = response.getResponse().getContentAsString();
-        //         assertEquals(requestBody, responseString);
-        // }
+                // assert
+                verify(ucsbDiningCommonsMenuItemRepository, times(1)).findById(123L);
+                verify(ucsbDiningCommonsMenuItemRepository, times(1)).save(ucsbDiningCommonsMenuItemEdited); // should be saved with correct user
+                String responseString = response.getResponse().getContentAsString();
+                assertEquals(requestBody, responseString);
+        }
 
         
-        // @WithMockUser(roles = { "ADMIN", "USER" })
-        // @Test
-        // public void admin_cannot_edit_ucsbdate_that_does_not_exist() throws Exception {
-        //         // arrange
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_cannot_edit_ucsbdiningcommonsmenuitem_that_does_not_exist() throws Exception {
+                // arrange
 
-        //         LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
+                UCSBDiningCommonsMenuItem ucsbEditedDiningCommonsMenuItem = UCSBDiningCommonsMenuItem.builder()
+                                .diningCommonsCode("portola")
+                                .name("Cream of Broccoli Soup (v)")
+                                .station("Greens & Grains")
+                                .build();
 
-        //         UCSBDate ucsbEditedDate = UCSBDate.builder()
-        //                         .name("firstDayOfClasses")
-        //                         .quarterYYYYQ("20222")
-        //                         .localDateTime(ldt1)
-        //                         .build();
+                String requestBody = mapper.writeValueAsString(ucsbEditedDiningCommonsMenuItem);
 
-        //         String requestBody = mapper.writeValueAsString(ucsbEditedDate);
+                when(ucsbDiningCommonsMenuItemRepository.findById(eq(123L))).thenReturn(Optional.empty());
 
-        //         when(ucsbDateRepository.findById(eq(67L))).thenReturn(Optional.empty());
+                // act
+                MvcResult response = mockMvc.perform(
+                                put("/api/UCSBDiningCommonsMenuItem?id=123")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .characterEncoding("utf-8")
+                                                .content(requestBody)
+                                                .with(csrf()))
+                                .andExpect(status().isNotFound()).andReturn();
 
-        //         // act
-        //         MvcResult response = mockMvc.perform(
-        //                         put("/api/ucsbdates?id=67")
-        //                                         .contentType(MediaType.APPLICATION_JSON)
-        //                                         .characterEncoding("utf-8")
-        //                                         .content(requestBody)
-        //                                         .with(csrf()))
-        //                         .andExpect(status().isNotFound()).andReturn();
+                // assert
+                verify(ucsbDiningCommonsMenuItemRepository, times(1)).findById(123L);
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("UCSBDiningCommonsMenuItem with id 123 not found", json.get("message"));
 
-        //         // assert
-        //         verify(ucsbDateRepository, times(1)).findById(67L);
-        //         Map<String, Object> json = responseToJson(response);
-        //         assertEquals("UCSBDate with id 67 not found", json.get("message"));
-
-        // }
+        }
 }
