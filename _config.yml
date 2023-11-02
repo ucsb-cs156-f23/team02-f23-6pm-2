@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f23/team02-f23-6pm-2
 owner: ucsb-cs156-f23
 repo_name: team02-f23-6pm-2
-pull_requests: [{"author":{"id":"MDQ6VXNlcjY4NzUyNjY1","is_bot":false,"login":"ZhenyuYu1","name":"Zhenyu Yu"},"headRefName":"zy-UCSBDiningCommonsMenuItem-create-db","number":43,"title":"Added @entity class and @repository class for MenuItem","url":"https://github.com/ucsb-cs156-f23/team02-f23-6pm-2/pull/43"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjcyODM5MjIz","is_bot":false,"login":"whuang602","name":"Will H."},"headRefName":"William-RecRequest-Controller","number":45,"title":"Implemented Recommendation Request controller and test","url":"https://github.com/ucsb-cs156-f23/team02-f23-6pm-2/pull/45"},{"author":{"id":"MDQ6VXNlcjY4NzUyNjY1","is_bot":false,"login":"ZhenyuYu1","name":"Zhenyu Yu"},"headRefName":"zy-UCSBDiningCommonsMenuItem-create-db","number":43,"title":"Added @entity class and @repository class for MenuItem","url":"https://github.com/ucsb-cs156-f23/team02-f23-6pm-2/pull/43"}]
