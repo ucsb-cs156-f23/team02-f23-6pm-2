@@ -145,7 +145,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/ucsborganizations/post?orgCode=osli&orgTranslation=OFFICE%20OF%20STUDENT%20LIFE&orgTranslationShort=STUDENT%20LIFE&inactive=false")
+                                post("/api/ucsborganizations/post?orgCode=osli&orgTranslation=OFFICE OF STUDENT LIFE&orgTranslationShort=STUDENT LIFE&inactive=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
